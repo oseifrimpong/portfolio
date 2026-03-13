@@ -3,8 +3,9 @@ import Layout from '../layouts/Layout.astro';
 
 const navLinks = [
   { href: '#about', label: 'about' },
-  { href: '#experience', label: 'experience' },
+  { href: '#systems', label: 'systems' },
   { href: '#projects', label: 'projects' },
+  { href: '#ai', label: 'AI systems' },
   { href: '#consulting', label: 'consulting' },
   { href: '#contact', label: 'contact' },
 ];
@@ -14,36 +15,58 @@ const skills = {
   architecture: ['Microservices', 'Domain Driven Design', 'Distributed Systems', 'API Architecture'],
   infrastructure: ['AWS', 'Cloud Architectures', 'Scalable Backend Services'],
   data: ['MySQL', 'Event Driven Systems'],
-  interests: ['AI Engineering', 'API Platforms', 'Fintech Infrastructure', 'Micro-SaaS'],
+  ai: ['LLM Applications', 'AI Agents', 'RAG Systems', 'AI Data Pipelines'],
 };
 
 const projects = [
   {
     name: 'SmartProof',
-    description: 'An AI-powered proofreading agent designed to analyze and improve written content using LLM orchestration.',
-    tags: ['AI', 'LLM', 'NLP'],
+    description: 'AI-powered proofreading agent that analyzes written content and improves clarity using LLM orchestration.',
+    highlights: ['LLM orchestration pipeline', 'Content analysis engine', 'Real-time suggestions API'],
+    tags: ['AI', 'LLM', 'Go'],
   },
   // {
   //   name: 'Shepherd',
-  //   description: 'A sports data pipeline and analytics platform that processes football data, calculates betting metrics, and delivers insights through APIs.',
+  //   description: 'Sports analytics data pipeline that processes football match data, calculates betting metrics, and delivers insights through APIs.',
+  //   highlights: ['High-volume data ingestion', 'Real-time analytics engine', 'RESTful insights API'],
   //   tags: ['Data Pipeline', 'Analytics', 'APIs'],
   // },
   // {
   //   name: 'SmartComply',
-  //   description: 'A compliance platform designed for businesses operating in the UAE to help them stay compliant with local regulations.',
+  //   description: 'A compliance platform for businesses operating in the UAE to help them stay compliant with local regulations.',
+  //   highlights: ['Regulatory rule engine', 'Automated compliance checks', 'Multi-tenant SaaS'],
   //   tags: ['Compliance', 'SaaS', 'UAE'],
   // },
   {
     name: 'AI URL Shortener',
-    description: 'A Go-based URL shortener that summarizes web pages and shows a branded summary page before redirecting users.',
+    description: 'A Go-based URL shortener that summarizes target pages and displays a branded summary before redirecting users.',
+    highlights: ['AI page summarization', 'Branded redirect pages', 'High-throughput link resolution'],
     tags: ['Go', 'AI', 'Web'],
   },
+];
+
+const aiCapabilities = [
+  { label: 'LLM-powered applications', icon: '⚡' },
+  { label: 'AI agents & orchestration', icon: '🤖' },
+  { label: 'RAG systems', icon: '🔍' },
+  { label: 'AI-assisted developer tools', icon: '🛠' },
+  { label: 'AI data pipelines', icon: '📊' },
+  { label: 'AI-powered APIs', icon: '🔌' },
+];
+
+const consultingAreas = [
+  'Backend architecture design',
+  'AI system architecture',
+  'Microservices system design',
+  'API platform architecture',
+  'Payment gateway integrations',
+  'Legacy system modernization',
 ];
 ---
 
 <Layout
-  title="Obed Osei Frimpong — Senior Software Engineer"
-  description="Senior Software Engineer specializing in scalable backend systems, distributed architectures, and fintech infrastructure. Based in Abu Dhabi, UAE."
+  title="Obed Osei Frimpong — Backend & AI Systems Engineer"
+  description="Senior backend engineer specializing in distributed systems, fintech infrastructure, and AI-powered applications."
 >
   <!-- Navigation -->
   <nav class="fixed top-0 left-0 right-0 z-50 bg-(--color-bg)/80 backdrop-blur-md border-b border-(--color-border)">
@@ -51,7 +74,7 @@ const projects = [
       <a href="#" class="font-mono text-sm font-(--font-mono) text-(--color-accent) hover:text-(--color-text) transition-colors">
         ~/obed
       </a>
-      <div class="hidden sm:flex items-center gap-6">
+      <div class="hidden md:flex items-center gap-6">
         {navLinks.map((link) => (
           <a
             href={link.href}
@@ -63,7 +86,7 @@ const projects = [
       </div>
       <button
         id="menu-toggle"
-        class="sm:hidden text-(--color-muted) hover:text-(--color-accent) transition-colors"
+        class="md:hidden text-(--color-muted) hover:text-(--color-accent) transition-colors"
         aria-label="Toggle menu"
       >
         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -72,7 +95,7 @@ const projects = [
       </button>
     </div>
     <!-- Mobile menu -->
-    <div id="mobile-menu" class="sm:hidden hidden border-t border-(--color-border) bg-(--color-bg)/95 backdrop-blur-md">
+    <div id="mobile-menu" class="md:hidden hidden border-t border-(--color-border) bg-(--color-bg)/95 backdrop-blur-md">
       <div class="px-6 py-4 flex flex-col gap-3">
         {navLinks.map((link) => (
           <a
@@ -94,11 +117,14 @@ const projects = [
         <p class="font-mono text-sm text-(--color-muted) mb-4">
           <span class="text-(--color-accent)">~$</span> whoami
         </p>
-        <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-4">
+        <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-3">
           Obed Osei Frimpong<span class="text-(--color-accent) cursor-blink">_</span>
         </h1>
-        <p class="text-lg sm:text-xl text-(--color-muted) max-w-2xl mb-8">
-          Senior Software Engineer building scalable backend systems and fintech infrastructure.
+        <p class="font-mono text-base sm:text-lg text-(--color-accent) mb-6">
+          Senior Backend &amp; AI Systems Engineer
+        </p>
+        <p class="text-lg sm:text-xl text-(--color-muted) max-w-2xl mb-8 leading-relaxed">
+          I design and build scalable backend systems, fintech infrastructure, and AI-powered platforms.
         </p>
         <p class="font-mono text-sm text-(--color-dim) mb-10">
           <span class="text-(--color-accent)">location:</span> Abu Dhabi, UAE
@@ -116,10 +142,11 @@ const projects = [
           </div>
           <div class="p-4 font-mono text-sm leading-relaxed">
             <p class="text-(--color-dim) mb-2"># output:</p>
-            <p class="text-(--color-text)"><span class="text-(--color-accent)">-></span> high-throughput APIs</p>
-            <p class="text-(--color-text)"><span class="text-(--color-accent)">-></span> fintech infrastructure</p>
-            <p class="text-(--color-text)"><span class="text-(--color-accent)">-></span> distributed services</p>
-            <p class="text-(--color-text)"><span class="text-(--color-accent)">-></span> microservices platforms</p>
+            <p class="text-(--color-text)"><span class="text-(--color-accent)">-&gt;</span> high-throughput APIs</p>
+            <p class="text-(--color-text)"><span class="text-(--color-accent)">-&gt;</span> fintech infrastructure</p>
+            <p class="text-(--color-text)"><span class="text-(--color-accent)">-&gt;</span> distributed services</p>
+            <p class="text-(--color-text)"><span class="text-(--color-accent)">-&gt;</span> microservices platforms</p>
+            <p class="text-(--color-text)"><span class="text-(--color-accent)">-&gt;</span> AI-powered systems</p>
           </div>
         </div>
       </div>
@@ -142,19 +169,19 @@ const projects = [
       </header>
       <div class="max-w-3xl space-y-5 text-(--color-muted) leading-relaxed">
         <p>
-          I am a senior software engineer with close to a decade of experience building scalable backend systems and APIs. My expertise is primarily in backend engineering, distributed systems, and system architecture.
+          I am a software engineer based in Abu Dhabi with over a decade of experience designing and building scalable backend systems.
         </p>
         <p>
-          I specialize in building high-performance services, payment integrations, and scalable platforms for fintech and digital products.
+          My work focuses on backend architecture, distributed systems, and fintech infrastructure. I have extensive experience building high-performance services using Go and Java, designing microservices platforms, and integrating AI capabilities into modern applications.
         </p>
         <p>
-          I enjoy building robust backend systems that are simple, scalable, and reliable.
+          I enjoy solving complex engineering problems and building systems that are reliable, scalable, and simple.
         </p>
       </div>
 
       <!-- Tech stack badges -->
       <div class="mt-10 flex flex-wrap gap-2">
-        {['Golang', 'Java', 'Spring Boot', 'Microservices', 'AWS', 'MySQL', 'REST APIs', 'gRPC'].map((tech) => (
+        {['Golang', 'Java', 'Spring Boot', 'Microservices', 'AWS', 'MySQL', 'REST APIs', 'gRPC', 'LLM', 'AI Agents'].map((tech) => (
           <span class="font-mono text-xs px-3 py-1.5 rounded-full border border-(--color-border) text-(--color-muted) hover:border-(--color-accent) hover:text-(--color-accent) transition-colors">
             {tech}
           </span>
@@ -162,53 +189,60 @@ const projects = [
       </div>
     </section>
 
-    <!-- ═══════════════ EXPERIENCE & SKILLS ═══════════════ -->
-    <section id="experience" class="py-24 scroll-mt-20 reveal">
+    <!-- ═══════════════ SYSTEMS THINKING ═══════════════ -->
+    <section id="systems" class="py-24 scroll-mt-20 reveal">
       <header class="mb-12">
         <p class="font-mono text-sm text-(--color-accent) mb-2">02 //</p>
-        <h2 class="text-2xl sm:text-3xl font-bold">experience_&_skills</h2>
+        <h2 class="text-2xl sm:text-3xl font-bold">how_i_build_systems</h2>
       </header>
 
-      <!-- Experience -->
-      <div class="mb-16">
-        <div class="border-l-2 border-(--color-border) pl-6 space-y-8">
-          <div>
-            <div class="flex items-center gap-3 mb-2">
-              <div class="w-2.5 h-2.5 rounded-full bg-(--color-accent) -ml-[calc(1.5rem+6px)]"></div>
-              <h3 class="text-lg font-semibold">Senior Software Engineer</h3>
-            </div>
-            <p class="font-mono text-sm text-(--color-accent) mb-3">Fintech · Present</p>
-            <p class="text-(--color-muted) leading-relaxed mb-4">
-              Designing and building backend services using Java Spring Boot and microservices architecture.
-              Focused on secure financial systems, scalable APIs, and distributed services.
+      <div class="max-w-3xl mb-12">
+        <p class="text-(--color-muted) leading-relaxed mb-8">
+          My engineering approach focuses on designing systems that scale, remain observable, and evolve over time.
+        </p>
+      </div>
+
+      <!-- Principles as terminal cards -->
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {[
+          { title: 'scalability_first', desc: 'Design for growth from day one. Horizontal scaling, async processing, and stateless services.' },
+          { title: 'clear_boundaries', desc: 'Well-defined service boundaries with clean contracts between domains and teams.' },
+          { title: 'event_driven', desc: 'Event-driven architectures that decouple services and enable real-time data flow.' },
+          { title: 'observability', desc: 'Deep observability with structured logging, distributed tracing, and actionable alerts.' },
+          { title: 'api_first', desc: 'API-first platforms with versioned contracts, documentation, and developer experience.' },
+          { title: 'reliability', desc: 'Circuit breakers, retries, graceful degradation, and chaos-tested resilience.' },
+        ].map((principle) => (
+          <div class="border border-(--color-border) rounded-lg p-5 hover:border-(--color-border-hover) transition-colors bg-(--color-card) group">
+            <h3 class="font-mono text-sm text-(--color-accent) mb-3 group-hover:text-(--color-text) transition-colors">
+              {`> ${principle.title}`}
+            </h3>
+            <p class="text-sm text-(--color-muted) leading-relaxed">
+              {principle.desc}
             </p>
-            <div class="font-mono text-sm text-(--color-dim) space-y-1">
-              <p><span class="text-(--color-accent)">-></span> Payment gateway integrations</p>
-              <p><span class="text-(--color-accent)">-></span> Backend platform design</p>
-              <p><span class="text-(--color-accent)">-></span> High-traffic APIs</p>
-              <p><span class="text-(--color-accent)">-></span> Legacy system modernization</p>
-            </div>
           </div>
-        </div>
+        ))}
       </div>
 
       <!-- Skills grid -->
-      <div class="grid sm:grid-cols-2 gap-6">
-        {Object.entries(skills).map(([category, items]) => (
-          <div class="border border-(--color-border) rounded-lg p-5 hover:border-(--color-border-hover) transition-colors bg-(--color-card)">
-            <h3 class="font-mono text-sm text-(--color-accent) mb-4">
-              {`{${category}}`}
-            </h3>
-            <ul class="space-y-2">
-              {items.map((item: string) => (
-                <li class="text-sm text-(--color-muted) flex items-center gap-2">
-                  <span class="text-(--color-accent) text-xs">*</span>
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
+      <div class="mt-16">
+        <h3 class="font-mono text-sm text-(--color-accent) mb-6">// skills & expertise</h3>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {Object.entries(skills).map(([category, items]) => (
+            <div class="border border-(--color-border) rounded-lg p-5 hover:border-(--color-border-hover) transition-colors bg-(--color-card)">
+              <h4 class="font-mono text-sm text-(--color-accent) mb-4">
+                {`{${category}}`}
+              </h4>
+              <ul class="space-y-2">
+                {items.map((item: string) => (
+                  <li class="text-sm text-(--color-muted) flex items-center gap-2">
+                    <span class="text-(--color-accent) text-xs">*</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
 
@@ -231,6 +265,16 @@ const projects = [
             <p class="text-sm text-(--color-muted) leading-relaxed mb-4">
               {project.description}
             </p>
+
+            <!-- Engineering highlights -->
+            <div class="mb-4 space-y-1">
+              {project.highlights.map((h: string) => (
+                <p class="font-mono text-xs text-(--color-dim)">
+                  <span class="text-(--color-accent)">-&gt;</span> {h}
+                </p>
+              ))}
+            </div>
+
             <div class="flex flex-wrap gap-2">
               {project.tags.map((tag: string) => (
                 <span class="font-mono text-[11px] px-2 py-0.5 rounded bg-(--color-accent-dim) text-(--color-accent)">
@@ -243,28 +287,61 @@ const projects = [
       </div>
     </section>
 
+    <!-- ═══════════════ AI SYSTEMS ═══════════════ -->
+    <section id="ai" class="py-24 scroll-mt-20 reveal">
+      <header class="mb-12">
+        <p class="font-mono text-sm text-(--color-accent) mb-2">04 //</p>
+        <h2 class="text-2xl sm:text-3xl font-bold">ai_systems</h2>
+      </header>
+
+      <div class="max-w-3xl mb-12">
+        <p class="text-(--color-muted) leading-relaxed mb-4">
+          I design and build AI-powered systems that integrate large language models into real-world applications. My focus is on production-ready AI platforms — not demos.
+        </p>
+      </div>
+
+      <!-- AI terminal block -->
+      <div class="max-w-2xl mb-12">
+        <div class="border border-(--color-border) rounded-lg overflow-hidden bg-(--color-card)">
+          <div class="flex items-center gap-1.5 px-4 py-2.5 border-b border-(--color-border)">
+            <span class="w-2.5 h-2.5 rounded-full bg-red-500/60"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/60"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-green-500/60"></span>
+            <span class="font-mono text-[11px] text-(--color-dim) ml-2">ai_capabilities()</span>
+          </div>
+          <div class="p-4 font-mono text-sm leading-loose">
+            {aiCapabilities.map((cap) => (
+              <p class="text-(--color-text)">
+                <span class="text-(--color-accent)">-&gt;</span> {cap.label}
+              </p>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <!-- AI philosophy -->
+      <div class="max-w-3xl border-l-2 border-(--color-accent) pl-6">
+        <p class="text-(--color-muted) leading-relaxed italic">
+          "I believe AI engineering is backend engineering — the same principles of scalability, reliability, and clean architecture apply. The model is just another service in the system."
+        </p>
+      </div>
+    </section>
+
     <!-- ═══════════════ CONSULTING ═══════════════ -->
     <section id="consulting" class="py-24 scroll-mt-20 reveal">
       <header class="mb-12">
-        <p class="font-mono text-sm text-(--color-accent) mb-2">04 //</p>
+        <p class="font-mono text-sm text-(--color-accent) mb-2">05 //</p>
         <h2 class="text-2xl sm:text-3xl font-bold">work_with_me</h2>
       </header>
 
       <div class="max-w-3xl mb-12">
         <p class="text-(--color-muted) leading-relaxed mb-8">
-          I provide consulting services for startups and companies that need help building scalable backend systems and APIs.
+          I work with startups and engineering teams to design and build scalable backend and AI systems.
         </p>
         <div class="grid sm:grid-cols-2 gap-3 font-mono text-sm">
-          {[
-            'Backend architecture design',
-            'Microservices system design',
-            'API platform architecture',
-            'Payment gateway integrations',
-            'Legacy system modernization',
-            'Scalable systems in Go / Java',
-          ].map((area) => (
+          {consultingAreas.map((area) => (
             <p class="text-(--color-muted)">
-              <span class="text-(--color-accent)">-></span> {area}
+              <span class="text-(--color-accent)">-&gt;</span> {area}
             </p>
           ))}
         </div>
@@ -332,7 +409,7 @@ const projects = [
     <!-- ═══════════════ CONTACT ═══════════════ -->
     <section id="contact" class="py-24 scroll-mt-20 reveal">
       <header class="mb-12">
-        <p class="font-mono text-sm text-(--color-accent) mb-2">05 //</p>
+        <p class="font-mono text-sm text-(--color-accent) mb-2">06 //</p>
         <h2 class="text-2xl sm:text-3xl font-bold">links</h2>
       </header>
 
@@ -425,7 +502,7 @@ const projects = [
 
     // Active nav highlighting
     const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('nav a[href^="#"]');
+    const navLinksEl = document.querySelectorAll('nav a[href^="#"]');
     window.addEventListener('scroll', () => {
       let current = '';
       sections.forEach((s) => {
@@ -433,7 +510,7 @@ const projects = [
           current = s.id;
         }
       });
-      navLinks.forEach((link) => {
+      navLinksEl.forEach((link) => {
         link.classList.toggle('!text-[var(--color-accent)]', link.getAttribute('href') === `#${current}`);
       });
     });
